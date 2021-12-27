@@ -26,6 +26,11 @@ const useStyles = makeStyles({
 export default function Search(props) {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
+	const obj = {
+		hi: "hi",
+		shalom: {},
+		who: "who"
+	}
 
 	const handleOpen = () => {
 		setOpen(true);
@@ -38,14 +43,9 @@ export default function Search(props) {
 	return (
 		<div>
 			<Card className={classes.root} key={props.key} onClick={handleOpen}>
-				<CardMedia
-					className="img-card"
-					image={
-						props.img ||
-						`https://images.unsplash.com/photo-1602979677071-1781b7f40023?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2F0JTIwYW5kJTIwZG9nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80`
-					}
-					title="Contemplative Reptile"
-				/>
+				<h1>{props.exchange}</h1>
+				<h3>time zone: {props.exchangeTimezoneName}</h3>
+				<p>{props.fullExchangeName}</p>
 				<CardActionArea>
 					<div
 						style={{
@@ -55,9 +55,8 @@ export default function Search(props) {
 						}}
 					>
 						<div>
-							<b>{props.name}</b>
 							<Typography variant="body2" color="textSecondary" component="p">
-								{props.status}
+								{props.regularMarketChangePercent}
 							</Typography>
 						</div>
 						<Button size="small" variant="outlined" onClick={handleOpen}>
@@ -79,22 +78,41 @@ export default function Search(props) {
 				}}
 			>
 				<Fade in={open}>
-					{/* <Pet
-						card={props.card}
-						click={props.showPet}
-						name={props.name}
-						color={props.color}
-						type={props.type}
-						key={props.key}
-						status={props.status}
-						img={props.img}
-						weight={props.weight}
-						height={props.height}
-						diet={props.diet}
-						allergies={props.allergies}
-						bio={props.bio}
-					/> */}
-					<h1>hellooooo</h1>
+					<Card className={classes.root} key={props.key} onClick={handleClose}>
+						{/* {Object.keys(props.card).map(
+							(item, i, value) => (
+								(value = props.card[item]),
+								console.log("~ value", value),
+								(
+									<li key={i}>
+										<span>
+											{i} {item}: {!item == {} ? "value" : null}
+										</span>
+									</li>
+								)
+							)
+						)} */}
+						{Object.keys(obj).map(
+							(item, i, value) => (
+								(value = obj[item]),
+								console.log("~ value", value),
+								console.log('~ typeof value === "object"', typeof value === "object"),
+									(
+										<li key={i}>
+											<span>
+												{/* {i} {item}: {value || "hi"} */}
+												{i} {item}: {typeof value === "object" && null}
+											</span>
+										</li>
+									)
+							)
+						)}
+						<CardActionArea>
+							<Button size="small" variant="outlined" onClick={handleOpen}>
+								Close
+							</Button>
+						</CardActionArea>
+					</Card>
 				</Fade>
 			</Modal>
 		</div>

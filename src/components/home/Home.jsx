@@ -38,36 +38,47 @@ export default function Home() {
 
 	const [loading, setLoading] = useState(false);
 
+	const API_KEY = "IVvVFsdJNB113m1ycK0tc3fDNQ4ekKkL734rjO91";
+	const region = "US",
+		lang = "en";
+	const symbols = "BAC%2CKC%3DF%2C002210.KS%2CIWM%2CAMECX";
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get(`http://localhost:5000/search/byType?type=`)
-			.then(function (response) {
-				console.log(response);
-				// setTimeout(() => {
-				// 	setLoading(false);
-				// }, 1500);
-				// setCardList(response.data);
-				// if (response.data.length === 0) {
-				// 	setEmpty(true);
-				// } else {
-				// 	setEmpty(false);
-				// }
-			});
-		// if (!type) setType("%%");
-	}, []);
-
-
-
+	// useEffect(() => {
+	// 	axios
+	// 		.get(
+	// 			`https://yfapi.net/v6/finance/quote/marketSummary?lang=en&region=US`,
+	// 			{
+	// 				headers: {
+	// 					accept: "application/json",
+	// 					"X-API-KEY": "IVvVFsdJNB113m1ycK0tc3fDNQ4ekKkL734rjO91",
+	// 				},
+	// 			}
+	// 		)
+	// 		.then(function (response) {
+	// 			setCardList(response.data.marketSummaryResponse.result);
+	// 		});
+	// }, []);
 
 	return (
 		<div className="search-con">
 			<div className="list-wrap">
 				<div className="list">
-					{cardList.map((card, i) => (
-					<PetList/>
-					))}
+					{cardList.map(
+						(card, i) => (
+							console.log("~ cardList", cardList),
+							(
+								<PetList
+									card={card}
+									exchange={card.exchange}
+									// regularMarketChangePercent={
+									// 	card.regularMarketChangePercent.fmt
+									// }
+									fullExchangeName={card.fullExchangeName}
+									exchangeTimezoneName={card.exchangeTimezoneName}
+								/>
+							)
+						)
+					)}
 				</div>
 			</div>
 		</div>
