@@ -3,19 +3,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 import AuthenticationButton from "../login/AuthButton";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
 	},
-	menuButton: {
-		marginRight: theme.spacing(2),
+	nav: {
+		background: "white",
 	},
 	title: {
 		flexGrow: 1,
+		color: "black",
+		fontWeight: "bold",
 	},
 }));
 
@@ -24,18 +24,12 @@ export default function Nav() {
 
 	return (
 		<div className={classes.root}>
-			<AppBar position="static">
+			<AppBar position="fixed" className={classes.nav}>
 				<Toolbar>
-					{/* <Link to="/home">
-						<Button color="secondary">Home</Button>
-					</Link> */}
 					<Typography variant="h6" className={classes.title}>
 						AudiTech
 					</Typography>
-					<AuthenticationButton/>
-					{/* <Link to="/">
-						<Button color="secondary">Login</Button>
-					</Link> */}
+					<AuthenticationButton />
 				</Toolbar>
 			</AppBar>
 		</div>

@@ -3,10 +3,12 @@ import axios from "axios";
 import StockList from "./StockList";
 import ClipLoader from "react-spinners/ClipLoader";
 import "./home.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
 	const [cardList, setCardList] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const { user } = useAuth0();
 
 	useEffect(() => {
 		setLoading(true);
@@ -28,7 +30,12 @@ export default function Home() {
 
 	return (
 		<div>
-			<h1 className="title">AudiTech Stocks</h1>
+			<h1 className="title">
+				welcome  {user.name}
+				<br />
+				AudiTech Stocks
+			</h1>
+
 			{loading && <ClipLoader color="white" loading={true} css="" size={160} />}
 			<div className="list-wrap">
 				<div className="list">

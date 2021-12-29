@@ -7,11 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import "./home.css";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Paper from "@material-ui/core/Paper";
 import ListSubheader from "@material-ui/core/ListSubheader";
+import "./home.css";
 
 const useStyles = makeStyles({
 	root: {
@@ -49,11 +49,7 @@ export default function StockList(props) {
 
 	return (
 		<div>
-			<Card
-				className={classes.root}
-				key={props.key}
-				onClick={handleOpen}
-			>
+			<Card className={classes.root} key={props.key} onClick={handleOpen}>
 				<h1>{props.exchange}</h1>
 				<h4>{props.exchangeTimezoneName}</h4>
 				<span>full name: {props.fullExchangeName}</span>
